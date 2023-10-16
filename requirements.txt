@@ -1,0 +1,4 @@
+# Add packages in here to install them as dependencies in production
+
+q2-sdk==2.197.1
+q2-sdk==2.197.1
