@@ -14,9 +14,7 @@ from q2_sdk.core.default_settings import *
 #   ('extension_2', 'sub_dir.extension_2')
 # ]
 #
-INSTALLED_EXTENSIONS = [
-    # "your_extension_here"
-]
+INSTALLED_EXTENSIONS = ['AccountDashboard']
 
 #Set this to true to pull hq credentials only from vault or another source, never from environment
 MULTITENANT = False

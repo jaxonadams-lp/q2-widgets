@@ -1,0 +1,58 @@
+<style>
+    table {
+    table-layout: fixed;
+    text-align: left;
+    }
+
+    td {
+    vertical-align: top;
+    }
+
+    td,
+    th {
+    padding: 15px 10px;
+    }
+
+    th {
+    box-shadow: inset 0 -2px 0 0 #cccccc;
+    }
+
+    td {
+    box-shadow: inset 0 -1px 0 0 #eeeeee;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper">
+    <table>
+    <thead>
+        <tr>
+        <th width="150">
+            Host Account ID
+        </th>
+        <th>
+            Account Name
+        </th>
+        <th class="text-right">
+            Account Balance
+        </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td>{{ account.account_num }}</td>
+                <td>{{ account.account_name }}</td>
+                <td class="text-right">{{ account.account_balance }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+<q2-input
+        name='account_id'
+        id='account_id'
+        label="Account ID">
+</q2-input>
