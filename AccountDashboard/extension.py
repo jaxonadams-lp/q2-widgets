@@ -3,6 +3,7 @@ AccountDashboard Extension
 """
 
 from q2_sdk.core.http_handlers.tecton_server_handler import Q2TectonServerRequestHandler
+from q2_sdk.hq.hq_api.q2_api import GetAccountHistoryById
 # from q2_sdk.hq.models.db_config.db_config import DbConfig
 # from q2_sdk.hq.models.db_config.db_config_list import DbConfigList
 # from q2_sdk.hq.models.db_config.db_env_config import DbEnvConfig, EnvValue
@@ -122,22 +123,41 @@ class AccountDashboardHandler(Q2TectonServerRequestHandler):
         return html
 
     async def submit(self):
-        """
-        This route will be called when your form is submitted, as configured above.
-        """
+        params_obj = GetAccountHistoryById.ParamsObj(
+            self.logger,
+            self.form_fields['account_id'],
+            '',
+            hq_credentials=self.hq_credentials
+        )
+
+        hq_response = await GetAccountHistoryById.execute(params_obj)
+
+        transaction_models = []
+
+        for transaction in hq_response.result_node.Data.AllHostTransactions.Transactions:
+            display_date = str(transaction.PostDate)
+            display_amount = str(transaction.TxnAmount)
+            is_credit = (transaction.SignedTxnAmount > 0)
+            display_description = str(transaction.Description)
+
+            transaction_models.append({
+                'display_date': display_date,
+                'display_amount': display_amount,
+                'is_credit': is_credit,
+                'display_description': display_description
+            })
+
         template = self.get_template(
-            'submit.html.jinja2',
-            {
-                'header': "AccountDashboard",
-                'message': 'Hello World POST: From "AccountDashboard".<br>',
-                'data': self.form_fields
+            'transaction_history.html.jinja2', {
+                'header': "Transaction History",
+                'transactions': transaction_models,
+                'current_account_id': self.form_fields['account_id'],
             }
         )
 
         html = self.get_tecton_form(
-            "AccountDashboard",
+            "Transaction History",
             custom_template=template,
-            # Hide the submit button as there is no form on this route.
             hide_submit_button=True
         )
 
