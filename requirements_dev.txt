@@ -1,4 +1,0 @@
-# Add packages in here to install them as dependencies in development
-# eg: pytest-cov==6.2.2
-
--r requirements.txt # include production dependencies
