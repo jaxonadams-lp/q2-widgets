@@ -55,7 +55,7 @@ class PaymentsJoelHandler(Q2TectonServerRequestHandler):
 
     DB_PLAN = DbPlan()
 
-    FRIENDLY_NAME = 'payments_joel'  # this will be used for end user facing references to this extension like Central and Menu items.
+    FRIENDLY_NAME = 'Make A Payment'  # this will be used for end user facing references to this extension like Central and Menu items.
     DEFAULT_MENU_ICON = 'landing-page'  # this will be the default icon used if extension placed at top level (not used if a child element)
 
     CONFIG_FILE_NAME = 'payments_joel'  # configuration/payments_joel.py file must exist if REQUIRED_CONFIGURATIONS exist
@@ -126,7 +126,7 @@ class PaymentsJoelHandler(Q2TectonServerRequestHandler):
                                      {})
 
         html = self.get_tecton_form(
-            "payments_joel",
+            "Make A Payment", #! This determines the title on the actual widget
             custom_template=template,
             # This argument tells the form where to route a form submission when the default submit button is clicked.
             # In this case, route to the submit method via its routing key "submit" as defined in self.router above.
