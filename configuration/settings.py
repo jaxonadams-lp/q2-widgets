@@ -14,7 +14,7 @@ from q2_sdk.core.default_settings import *
 #   ('extension_2', 'sub_dir.extension_2')
 # ]
 #
-INSTALLED_EXTENSIONS = ['CreditCardSummary']
+INSTALLED_EXTENSIONS = ['CreditCardSummary', 'CCtransactionSummary']
 
 #Set this to true to pull hq credentials only from vault or another source, never from environment
 MULTITENANT = False
