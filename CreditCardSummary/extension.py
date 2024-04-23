@@ -125,6 +125,8 @@ class CreditCardSummaryHandler(Q2TectonServerRequestHandler):
         template = self.get_template('index.html.jinja2',
                                      {})
 
+        # fetch stuff
+
         html = self.get_tecton_form(
             "CreditCardSummary",
             custom_template=template,
