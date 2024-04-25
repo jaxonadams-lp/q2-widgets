@@ -14,7 +14,7 @@ from q2_sdk.core.default_settings import *
 #   ('extension_2', 'sub_dir.extension_2')
 # ]
 #
-INSTALLED_EXTENSIONS = ['payments_joel']
+INSTALLED_EXTENSIONS = ['CreditCardSummary']
 
 #Set this to true to pull hq credentials only from vault or another source, never from environment
 MULTITENANT = False
@@ -45,7 +45,7 @@ CORE = None
 # CORE = 'Symitar'
 
 IS_CUSTOMER_CREATED = True
-COMPANY = 'loanpro'
+COMPANY = 'LoanPro'
 
 # Q2 blocks all outbound traffic in our datacenter by default.
 # To enable a url through our firewall, a networking request must be made
