@@ -1,5 +1,5 @@
 """
-payments_joel Extension
+make_a_payment Extension
 """
 
 from q2_sdk.core.http_handlers.tecton_server_handler import Q2TectonServerRequestHandler
@@ -10,7 +10,7 @@ from q2_sdk.core.http_handlers.tecton_server_handler import Q2TectonServerReques
 from .install.db_plan import DbPlan
 
 
-class PaymentsJoelHandler(Q2TectonServerRequestHandler):
+class MakeAPaymentHandler(Q2TectonServerRequestHandler):
 
     ## REQUIRED_CONFIGURATIONS is a dictionary of key value pairs that are necessary
     ## for the extension to run. If set, ensures the entries are set in the
@@ -55,12 +55,12 @@ class PaymentsJoelHandler(Q2TectonServerRequestHandler):
 
     DB_PLAN = DbPlan()
 
-    FRIENDLY_NAME = 'Make A Payment'  # this will be used for end user facing references to this extension like Central and Menu items.
+    FRIENDLY_NAME = 'make_a_payment'  # this will be used for end user facing references to this extension like Central and Menu items.
     DEFAULT_MENU_ICON = 'landing-page'  # this will be the default icon used if extension placed at top level (not used if a child element)
 
-    CONFIG_FILE_NAME = 'payments_joel'  # configuration/payments_joel.py file must exist if REQUIRED_CONFIGURATIONS exist
+    CONFIG_FILE_NAME = 'make_a_payment'  # configuration/make_a_payment.py file must exist if REQUIRED_CONFIGURATIONS exist
 
-    TECTON_URL = 'https://cdn1.onlineaccess1.com/cdn/base/tecton/v1.36.0/q2-tecton-sdk.js'
+    TECTON_URL = 'https://cdn1.onlineaccess1.com/cdn/base/tecton/v1.40.0/q2-tecton-sdk.js'
 
     def __init__(self, application, request, **kwargs):
         """
@@ -103,9 +103,9 @@ class PaymentsJoelHandler(Q2TectonServerRequestHandler):
         function. This is based off of Tornado's request handling.
         More info at http://www.tornadoweb.org/en/stable/guide/structure.html?highlight=post#subclassing-requesthandler
         """
-        self.write("Hello World GET: From payments_joel")
+        self.write("Hello World GET: From make_a_payment")
 
-    async def default(self):                                    #! WILL NEED A SIMILAR FUNC FOR EACH MODAL TO RENDER TEMPLATES
+    async def default(self):
         """
         This is the default route, which will handle any POST requests submitted without
         a routing key.
@@ -126,7 +126,7 @@ class PaymentsJoelHandler(Q2TectonServerRequestHandler):
                                      {})
 
         html = self.get_tecton_form(
-            "Pay",                                              #! This determines the title on the actual widget
+            "make_a_payment",
             custom_template=template,
             # This argument tells the form where to route a form submission when the default submit button is clicked.
             # In this case, route to the submit method via its routing key "submit" as defined in self.router above.
@@ -135,21 +135,21 @@ class PaymentsJoelHandler(Q2TectonServerRequestHandler):
         )
         return html
 
-    async def submit(self):                                    #! 
+    async def submit(self):
         """
         This route will be called when your form is submitted, as configured above.
         """
         template = self.get_template(
             'submit.html.jinja2',
             {
-                'header': "payments_joel",
-                'message': 'Hello World POST: From "payments_joel".<br>',
+                'header': "make_a_payment",
+                'message': 'Hello World POST: From "make_a_payment".<br>',
                 'data': self.form_fields
             }
         )
 
         html = self.get_tecton_form(
-            "payments_joel",
+            "make_a_payment",
             custom_template=template,
             # Hide the submit button as there is no form on this route.
             hide_submit_button=True

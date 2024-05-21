@@ -16,7 +16,7 @@ class DbPlan(db_plan.DbPlan):
         """
 
         super().__init__()
-        self.ui_text_prefix = 'payments_joel'  # Will be used for all self.ui_text_elements
+        self.ui_text_prefix = 'make_a_payment'  # Will be used for all self.ui_text_elements
         # self.send_account_list = True  # Populate self.account_list when HQ calls the extension
         # self.send_account_details = True  # Populate HADE data on accounts in self.account_list
         # self.payload_stored_proc = None  # Run a given Stored Procedure to manipulate the call shape from HQ

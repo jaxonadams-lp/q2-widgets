@@ -7,7 +7,7 @@ from q2_sdk.ui.forms import Q2Form
 from .. import extension
 
 
-class MockPaymentsJoelHandler(extension.PaymentsJoelHandler, MockHandlerMixin):
+class MockMakeAPaymentHandler(extension.MakeAPaymentHandler, MockHandlerMixin):
 
     def __init__(self):
         super().__init__(Application(), RequestMock(), logging_level='INFO')
@@ -17,7 +17,7 @@ class MockPaymentsJoelHandler(extension.PaymentsJoelHandler, MockHandlerMixin):
 
 @pytest.mark.skip(reason="Generated with extension")
 async def test_default_route():
-    handler = MockPaymentsJoelHandler()
+    handler = MockMakeAPaymentHandler()
     actual = await handler.default()
 
     assert isinstance(actual, Q2Form)
@@ -27,7 +27,7 @@ async def test_default_route():
 
 @pytest.mark.skip(reason="Generated with extension")
 async def test_submit_route():
-    handler = MockPaymentsJoelHandler()
+    handler = MockMakeAPaymentHandler()
     handler.form_fields = {
         'foo': 'bar'
     }
